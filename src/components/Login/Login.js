@@ -29,20 +29,32 @@ const Login = () => {
         const signInUser = { name: displayName, email };
         setLoggedInUser(signInUser);
         history.replace(from);
+        storeAuthToken();
         // console.log(signInUser)
       })
       .catch((error) => {
-        // Handle Errors here.
+       
         var errorCode = error.code;
         var errorMessage = error.message;
-        // The email of the user's account used.
+       
         var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
+      
         var credential = error.credential;
 
-        // ...
+     
       });
   };
+
+  const storeAuthToken =()=>{
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+    .then(function(idToken) {
+    sessionStorage.setItem('token',idToken);
+      // ...
+    }).catch(function(error) {
+      // Handle error
+    });
+    
+  }
   return (
     <div>
       <h1>This is Login</h1>

@@ -11,6 +11,7 @@ import Book from './components/Book/Book';
 import Header from './components/Header/Header';
 import { createContext } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Bookings from './Bookings/Bookings';
 
 
 export const UserContext = createContext();
@@ -33,10 +34,16 @@ function App() {
               </Route>
               <PrivateRoute path="/book/:bedType">
                 <Book />
+                
               </PrivateRoute>
               <Route exact path="/">
                 <Home />
               </Route>
+
+              
+             
+              
+              
             </Switch>
       </Router>
       </UserContext.Provider>
